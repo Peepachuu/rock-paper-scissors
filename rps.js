@@ -1,21 +1,23 @@
-let choices = ["rock", "paper", "scissors"];
+const choices = ["rock", "paper", "scissors"];
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3);
+    const choice = Math.floor(Math.random() * 3);
     return choices[choice];
 }
 
 function playRound(playerSelection, computerSelection) {
-    let result = checkResult(playerSelection, computerSelection);
+    const result = checkResult(playerSelection, computerSelection);
     switch (result) {
         case 0:
-            console.log(`You tied! ${playerSelection} ties with ${computerSelection}!`);
-            return [0, 0];
+            return `You tied! ${playerSelection} ties with ${computerSelection}!`;
         case 1:
-            console.log(`You won! ${playerSelection} beats ${computerSelection}!`);
-            return [1, 0];
+            ++playerScore
+            return `You won! ${playerSelection} beats ${computerSelection}!`;
         case -1:
-            console.log(`You lost! ${playerSelection} loses against ${computerSelection}!`); 
-            return [0, 1];   
+            ++computerScore
+            return `You lost! ${playerSelection} loses against ${computerSelection}!`; 
     }
 }
 
@@ -34,21 +36,18 @@ function checkResult(playerSelection, computerSelection) {
 }
 
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
     for (let i = 0; i < 5; ++i) {
-        let pSelection = prompt("What's your move?").toLowerCase();
-        scoresThisRound = playRound(pSelection, getComputerChoice());
-        playerScore += scoresThisRound[0];
-        computerScore += scoresThisRound[1];
+        const pSelection = prompt("What's your move?").toLowerCase();
+        const message = playRound(pSelection, getComputerChoice())
+        alert(message);
     }
     if (playerScore < computerScore) {
-        console.log(`You lost! The computer beat you ${computerScore} - ${playerScore}`)
+        return `You lost! The computer beat you ${computerScore} - ${playerScore}`;
     } else if (playerScore == computerScore) {
-        console.log(`Wow you tied!`)
-    } else {
-        console.log(`You won! You beat the computer ${playerScore} - ${computerScore}`)
-    }
+        return "Wow you tied!";
+    } 
+    return `You won! You beat the computer ${playerScore} - ${computerScore}`;
 }
 
-game();
+
+alert(game());
