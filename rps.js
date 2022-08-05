@@ -7,17 +7,22 @@ function getComputerChoice() {
     return choices[choice];
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(e) {
+    const computerSelection = getComputerChoice();
+    const playerSelection = e.target.textContent;
     const result = checkResult(playerSelection, computerSelection);
     switch (result) {
         case 0:
-            return `You tied! ${playerSelection} ties with ${computerSelection}!`;
+            console.log(`You tied! ${playerSelection} ties with ${computerSelection}!`);
+            break;
         case 1:
             ++playerScore
-            return `You won! ${playerSelection} beats ${computerSelection}!`;
+            console.log(`You won! ${playerSelection} beats ${computerSelection}!`);
+            break;
         case -1:
             ++computerScore
-            return `You lost! ${playerSelection} loses against ${computerSelection}!`; 
+            console.log(`You lost! ${playerSelection} loses against ${computerSelection}!`); 
+            break;
     }
 }
 
@@ -35,7 +40,12 @@ function checkResult(playerSelection, computerSelection) {
         return (computerSelection == "rock" ? -1 : 1);
 }
 
-function game() {
+let btns = document.querySelectorAll("button");
+btns.forEach((btn) => {
+    btn.addEventListener('click', playRound)
+});
+
+/*function game() {
     for (let i = 0; i < 5; ++i) {
         const pSelection = prompt("What's your move?").toLowerCase();
         const message = playRound(pSelection, getComputerChoice())
@@ -50,4 +60,4 @@ function game() {
 }
 
 
-alert(game());
+alert(game());*/
