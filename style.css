@@ -6,19 +6,35 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 2;
 }
-#result-text {
+.result-text,
+.game-score {
     color: #eeeee4;
     font-size: 24px;
+    text-align: center;
+}
+
+.header {
+    color: white;
+    justify-self: flex-start;
+    flex: 1;
 }
 
 img {
     width: 200px;
     height: auto;
+    background: transparent;
+}
+
+button {
+    background: transparent;
+    border-color: white;
 }
