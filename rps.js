@@ -9,20 +9,20 @@ function getComputerChoice() {
 
 function playRound(e) {
     const computerSelection = getComputerChoice();
-    const playerSelection = e.target.textContent;
+    const playerSelection = e.target.className;
     const result = checkResult(playerSelection, computerSelection);
-    switch (result) {
-        case 0:
-            console.log(`You tied! ${playerSelection} ties with ${computerSelection}!`);
-            break;
-        case 1:
-            ++playerScore
-            console.log(`You won! ${playerSelection} beats ${computerSelection}!`);
-            break;
-        case -1:
+
+    const gameResult = document.querySelector("#result-text");
+    if (result == 0) {
+            gameResult.textContent = `You tied! ${playerSelection} ties with ${computerSelection}!`;
+    }
+    else if (result == 1) {
+            ++playerScore 
+            gameResult.textContent = `You won! ${playerSelection} beats ${computerSelection}!`;
+    }
+    else if (result == -1) {
             ++computerScore
-            console.log(`You lost! ${playerSelection} loses against ${computerSelection}!`); 
-            break;
+            gameResult.textContent = `You lost! ${playerSelection} loses against ${computerSelection}!`; 
     }
 }
 
@@ -39,6 +39,8 @@ function checkResult(playerSelection, computerSelection) {
     if (playerSelection == "scissors")
         return (computerSelection == "rock" ? -1 : 1);
 }
+
+
 
 let btns = document.querySelectorAll("button");
 btns.forEach((btn) => {
