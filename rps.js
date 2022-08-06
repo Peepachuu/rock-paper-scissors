@@ -58,20 +58,3 @@ let btns = document.querySelectorAll("button");
 btns.forEach((btn) => {
     btn.addEventListener('click', playRound)
 });
-
-/*function game() {
-    for (let i = 0; i < 5; ++i) {
-        const pSelection = prompt("What's your move?").toLowerCase();
-        const message = playRound(pSelection, getComputerChoice())
-        alert(message);
-    }
-    if (playerScore < computerScore) {
-        return `You lost! The computer beat you ${computerScore} - ${playerScore}`;
-    } else if (playerScore == computerScore) {
-        return "Wow you tied!";
-    } 
-    return `You won! You beat the computer ${playerScore} - ${computerScore}`;
-}
-
-
-alert(game());*/
